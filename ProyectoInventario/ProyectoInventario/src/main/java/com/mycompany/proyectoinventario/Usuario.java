@@ -4,12 +4,20 @@ package com.mycompany.proyectoinventario;
 import java.util.Scanner;
 
 public class Usuario {
+    
+    private int ID;
+    private String Nombre;
+    private String Apellido;
     private String User;
-	private String Password;
+    private String Password;
+    public float VentaFinal;
 	
 	Usuario(){
 	
-		User = "";
+		ID = 0;
+                Nombre = "";
+                Apellido = "";
+                User = "";
 		Password = "";
 	
 	}
@@ -58,9 +66,48 @@ public class Usuario {
 		return 0;
 
 	}
+        public void ElegirCategoria(){
+        
+            int opcion = 0, repetir = 0;
+            VentaFinal = 0;
+            
+            Scanner scan = new Scanner(System.in);
+            EscrituraDibujo Escolares = new EscrituraDibujo();
+                
+            do{
+                
+                System.out.println(""+VentaFinal);
+                //menu
+                opcion = scan.nextInt();
+                
+                switch (opcion){
+                
+                    case 1:
+                            Escolares.ElegirProducto();
+                            break;
+                    case 2:
+                            repetir = 1;//se correra mientras se agreguen mas catehorias
+                            break;
+                    default:
+                            break;
+                    
+                }
+            
+            }while(repetir == 0);    
+        
+        }
 	public void ConsultarPrecios(){}
 	public void CambiarPrecios(){}
-	public void AgregarUsuario(){}
+	public void AgregarUsuario(){
+        
+            Scanner scan = new Scanner(System.in);
+            
+            Nombre = scan.nextLine();
+            Apellido = scan.nextLine();
+            User = scan.nextLine();
+            Password = scan.nextLine();
+            
+        }
 	public void BorrarUsuario(){}
 	public void ConsultarVentas(){}
 
