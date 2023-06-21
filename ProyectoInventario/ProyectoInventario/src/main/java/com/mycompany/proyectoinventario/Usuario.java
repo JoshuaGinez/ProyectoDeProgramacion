@@ -5,19 +5,15 @@ import java.util.Scanner;
 
 public class Usuario {
     
-    private int ID;
-    private String Nombre;
-    private String Apellido;
+    private static final String Users[] = new String[]{"Gerente.java","Empleado.java"};
+    private static final String Pass[] = new String[]{"12345","67890"};
+
     private String User;
     private String Password;
-    public float VentaFinal;
 	
 	Usuario(){
 	
-		ID = 0;
-                Nombre = "";
-                Apellido = "";
-                User = "";
+		User = "";
 		Password = "";
 	
 	}
@@ -25,90 +21,44 @@ public class Usuario {
 	public int IniciarSesion(){
 	
 		int repetir = 0;
-		String UserValidar = "", PasswordValidar = "";
 		
 		Scanner scan = new Scanner(System.in);
 		
 		do{
 		
+			System.out.print("\033[H\033[2J");
+                        System.out.print("Usuario: ");
 			User = scan.nextLine();
+			System.out.print("Password: ");
 			Password = scan.nextLine();
 			
-			for(int i=0; i<10; i++){//le doy de limite 10 usuarios
+			if((User.equals(Users[0])) && (Password.equals(Pass[0]))){
 			
-				//UserValidar=/*base*/;
-				//PasswordValidar=/*base*/;
+				repetir = 3;
+				return 1;
 			
-				if(User == UserValidar && Password == PasswordValidar){
+			}else if((Password.equals(Pass[1])) && (User.equals(Users[1]))){
 			
-					repetir=3;
-					return 1;
-			
-				}else if(User == UserValidar && Password == PasswordValidar){
-			
-					repetir=3;
-					return 2;
-			
-				}
+			repetir=3;
+			return 2;
 			
 			}
-			
+									
 			if(repetir < 2){
 			
-				//mensaje: user y password incorrectos
+                            System.out.print("El usuario o la contrasena son incorrectos");
+                            scan.nextLine();
+                            System.out.print("\033[H\033[2J");
 			
 			}
 			repetir++;
 		
 		}while(repetir < 3);
 		
-		//mensaje: has excedido el numero de intentos permitidos se cerrara el programa
+		System.out.print("Has excedido el numero de intentos permitidos se cerrara el programa");
+                scan.nextLine();
 		return 0;
 
 	}
-        public void ElegirCategoria(){
-        
-            int opcion = 0, repetir = 0;
-            VentaFinal = 0;
-            
-            Scanner scan = new Scanner(System.in);
-            EscrituraDibujo Escolares = new EscrituraDibujo();
-                
-            do{
-                
-                System.out.println(""+VentaFinal);
-                //menu
-                opcion = scan.nextInt();
-                
-                switch (opcion){
-                
-                    case 1:
-                            Escolares.ElegirProducto();
-                            break;
-                    case 2:
-                            repetir = 1;//se correra mientras se agreguen mas catehorias
-                            break;
-                    default:
-                            break;
-                    
-                }
-            
-            }while(repetir == 0);    
-        
-        }
-	public void ConsultarPrecios(){}
-	public void CambiarPrecios(){}
-	public void AgregarUsuario(){
-        
-            Scanner scan = new Scanner(System.in);
-            
-            Nombre = scan.nextLine();
-            Apellido = scan.nextLine();
-            User = scan.nextLine();
-            Password = scan.nextLine();
-            
-        }
-	public void BorrarUsuario(){}
-	public void ConsultarVentas(){}
-
+        	
 }
